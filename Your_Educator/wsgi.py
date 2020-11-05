@@ -1,16 +1,7 @@
-"""
-WSGI config for Your_Educator project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
-"""
-
 import os
-
+import sys
+sys.path.append('/opt/bitnami/projects/Your_Educator')
+os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/projects/Your_Educator/egg_cache")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Your_Educator.settings")
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Your_Educator.settings')
-
 application = get_wsgi_application()
