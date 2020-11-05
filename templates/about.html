@@ -1,0 +1,439 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Your Educator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static "images/book.png" %}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static "css/open-iconic-bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/animate.css" %}">
+    
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/aos.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/ionicons.min.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.timepicker.css" %}">
+
+    
+    <link rel="stylesheet" href="{% static "css/flaticon.css" %}">
+    <link rel="stylesheet" href="{% static "css/icomoon.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+  </head>
+  <style>
+    #tt{
+      text-align: center;
+    }
+    #idi{
+      object-fit: cover;
+      max-height: 50px;
+    }
+    #exampleModalLabel{
+      text-align: center;
+    }
+    #fl{
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    #imgcaorusel{
+      height: 400px;
+      object-fit: cover;
+    }
+    #exampleModalLabel{
+      text-align: center;
+    }
+    .ftco-navbar-light.scrolled .navbar-brand {
+      font-family: serif;
+      font-weight: 500;
+    }
+    .navbar-brand {
+      font-family: serif;
+      font-weight: 500;
+    }
+  </style>
+  <body>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img id="idi" src="{% static "images/book.png" %}" alt="">Your<br><small>Educator</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/course" class="nav-link">Courses</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item cta" id="tt"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
+          {% else %}
+          <li class="nav-item cta" data-toggle="modal" data-target="#exampleModal" id="tt"><a class="nav-link"><span>Signup</span></a></li>&nbsp;
+          <li class="nav-item cta" data-toggle="modal" data-target="#exampleModal2" id="tt"><a class="nav-link"><span>Login</span></a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+   
+  <!-- END nav -->
+  <div class="container-fluid" id="fl">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="10">
+          <img src="{% static "images/onlinepics5.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="10">
+          <img src="{% static "images/new_online_course.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="10">
+          <img src="{% static "images/onlinepics4.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row d-flex">
+    			<div class="col-md-6 d-flex ftco-animate">
+    				<div class="img img-about align-self-stretch" style="background-image: url({% static "images/bg_3.jpg" %}); width: 100%;"></div>
+    			</div>
+    			<div class="col-md-6 pl-md-5 ftco-animate">
+    				<h2 class="mb-4">Welcome to Your Educator Established Since 2020</h2>
+    				<p>A name that opens doors. Practical skills to succeed. And a clear path to advance your career. This is innovation. This is extreme personalization. This is a world-class education that's tailored to the unique needs of working adults. Now you can earn a degree from an accredited online university that is part of the respected Your Educator system. Our innovative approach to teaching and modern curriculum give you the skills you need to make an immediate impact on your career—and the edge to conquer whatever comes next. Because this is education designed for you. This is your University.</p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    <div class="container">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/signup" method="post">{% csrf_token %}
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" id="email" aria-describedby="emailHelp" placeholder="name@example.com" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Username" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label> 
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                  </div>
+                  <!-- <div class="form-row">
+                    <div class="col">
+                      <input type="text" class="form-control" name="fname" id="fname" placeholder="First name" required>
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name" required>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/login" method="post">{% csrf_token %}
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Username" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label> 
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>  
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="ftco-section-3 img" style="background-image: url({% static "images/bg_3.jpg" %});">
+    	<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row d-md-flex justify-content-center">
+    			<div class="col-md-9 about-video text-center">
+    				<h2 class="ftco-animate">Your Educator is among the Leading Universities Around the World</h2>
+    				<div class="video d-flex justify-content-center">
+    					<a href="{% static "video/school_v.mp4" %}" class="button popup-vimeo d-flex justify-content-center align-items-center"><span class="ion-ios-play"></span></a>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    <section class="ftco-counter bg-light" id="section-counter">
+    	<div class="container">
+    		<div class="row justify-content-center">
+    			<div class="col-md-10">
+		    		<div class="row">
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="10300">0</strong>
+		                <span>Satisfied Students</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="7896">0</strong>
+		                <span>Courses Completed</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="400">0</strong>
+		                <span>Experts Advisors</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="200">0</strong>
+		                <span>Schools</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section testimony-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate text-center">
+            <h2 class="mb-4">What Our Student Says</h2>
+          </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12 ftco-animate">
+            <div class="carousel-testimony owl-carousel">
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-5" style="background-image: url({% static "images/student4.jpg" %})">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-5">It’s like you sit in a classroom with a research paper and the person who wrote the paper is the professor in front of you. That kind of experience you don’t get at many universities.</p>
+                    <p class="name">Aron</p>
+                    <span class="position">CSE Student</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-5" style="background-image: url({% static "images/student2.jpg" %})">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    <p class="name">Adam</p>
+                    <span class="position">Science Students</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center">
+                  <div class="user-img mb-5" style="background-image: url({% static "images/student1.jpg" %})">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    <p class="name">Alan</p>
+                    <span class="position">English Student</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+		
+		<section class="ftco-section-parallax">
+      <div class="parallax-img d-flex align-items-center">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+              <h2>Subscribe to our Motivational Quotes</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+              <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-8">
+                  <form action="/subscription" method="post" class="subscribe-form">{% csrf_token %}
+                    <div class="form-group d-flex">
+                      <input type="text" name="email" id="email" class="form-control" placeholder="Enter email address" required="email">
+                      <input type="submit" value="Subscribe" class="submit px-3">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section img" style="background-image: url({% static "images/bg_2.jpg" %}); background-attachment:fixed;">
+    	<div class="overlay"></div>
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+              <h2><a class="navbar-brand" href="/"><img id="idi" src="{% static "images/book.png" %}" alt="">Your <br><small>Educator</small></a></h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a ><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a ><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a ><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Recent Blog</h2>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url({% static "images/image_1.jpg" %});"></a>
+                <div class="text">
+                  <h3 class="heading"><a >Even the all-powerful Pointing has no control about</a></h3>
+                  <div class="meta">
+                    <div><a ><span class="icon-calendar"></span> July 12, 2021</a></div>
+                    <div><a ><span class="icon-person"></span> Admin</a></div>
+                    <div><a ><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url({% static "images/image_2.jpg" %});"></a>
+                <div class="text">
+                  <h3 class="heading"><a >Even the all-powerful Pointing has no control about</a></h3>
+                  <div class="meta">
+                    <div><a ><span class="icon-calendar"></span> July 12, 2021</a></div>
+                    <div><a ><span class="icon-person"></span> Admin</a></div>
+                    <div><a ><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+            	<a href="/contact"><h2 class="ftco-heading-2">Have a Question?</h2></a>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">India, West Bengal, Kolkata</span></li>
+	                <li><a ><span class="icon icon-phone"></span><span class="text">+91 9433274990</span></a></li>
+	                <li><a ><span class="icon icon-envelope"></span><span class="text">himaloymondal100@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+ <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>-->
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/jquery-migrate-3.0.1.min.js" %}"></script>
+  <script src="{% static "js/popper.min.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/jquery.easing.1.3.js" %}"></script>
+  <script src="{% static "js/jquery.waypoints.min.js" %}"></script>
+  <script src="{% static "js/jquery.stellar.min.js" %}"></script>
+  <script src="{% static "js/owl.carousel.min.js" %}"></script>
+  <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+  <script src="{% static "js/aos.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
+  <script src="{% static "js/jquery.timepicker.min.js" %}"></script>
+  <script src="{% static "js/scrollax.min.js" %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static "js/google-map.js" %}"></script>
+  <script src="{% static "js/main.js" %}"></script>
+    
+  </body>
+</html>

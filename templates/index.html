@@ -1,0 +1,907 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Your Educator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="desciption" content="#bod,/course#courses, /course#course_name, /course#course_desc">
+  <meta name="keywords" content="/course#courses, /course#course_name, /course#course_desc, Himalaya University">
+  <meta name="robots" content="INDEX, FOLLOW">
+  <link rel="shortcut icon" href="{% static "images/book.png" %}">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <style>
+    body, button, input {
+      font: 1em Hind, sans-serif;
+      line-height: 1.5em;
+    }
+    body, input {
+      color: #171717;
+    }
+    .search-bar {
+      display: flex;
+    }
+    body {
+      background: #000000;
+      height: 100vh;
+    }
+    .search-bar input,
+    .search-btn, 
+    .search-btn:before, 
+    .search-btn:after {
+      transition: all 0.25s ease-out;
+    }
+    .search-bar input,
+    .search-btn {
+      width: 3em;
+      height: 3em;
+    }
+    .search-bar input:invalid:not(:focus),
+    .search-btn {
+      cursor: pointer;
+    }
+    .search-bar,
+    .search-bar input:focus,
+    .search-bar input:valid  {
+      width: 100%;
+    }
+    .search-bar input:focus,
+    .search-bar input:not(:focus) + .search-btn:focus {
+      outline: transparent;
+    }
+    .search-bar {
+      margin: auto;
+      padding: 1.5em;
+      justify-content: center;
+      max-width: 30em;
+    }
+    .search-bar input {
+      background: transparent;
+      border-radius: 1.5em;
+      box-shadow: 0 0 0 0.4em #171717 inset;
+      padding: 0.75em;
+      transform: translate(0.5em,0.5em) scale(0.5);
+      transform-origin: 100% 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    .search-bar input::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+    .search-bar input:focus,
+    .search-bar input:valid {
+      background: #fff;
+      border-radius: 0.375em 0 0 0.375em;
+      box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+      transform: scale(1);
+    }
+    .search-btn {
+      background: #171717;
+      border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+      padding: 0.75em;
+      position: relative;
+      transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+      transform-origin: 0 50%;
+    }
+    .search-btn:before, 
+    .search-btn:after {
+      content: "";
+      display: block;
+      opacity: 0;
+      position: absolute;
+    }
+    .search-btn:before {
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+      top: 0.75em;
+      left: 0.75em;
+      width: 1.2em;
+      height: 1.2em;
+    }
+    .search-btn:after {
+      background: #f1f1f1;
+      border-radius: 0 0.25em 0.25em 0;
+      top: 51%;
+      left: 51%;
+      width: 0.75em;
+      height: 0.25em;
+      transform: translate(0.2em,0) rotate(45deg);
+      transform-origin: 0 50%;
+    }
+    .search-btn span {
+      display: inline-block;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+    }
+    
+    /* Active state */
+    .search-bar input:focus + .search-btn,
+    .search-bar input:valid + .search-btn {
+      background: #2762f3;
+      border-radius: 0 0.375em 0.375em 0;
+      transform: scale(1);
+    }
+    .search-bar input:focus + .search-btn:before, 
+    .search-bar input:focus + .search-btn:after,
+    .search-bar input:valid + .search-btn:before, 
+    .search-bar input:valid + .search-btn:after {
+      opacity: 1;
+    }
+    .search-bar input:focus + .search-btn:hover,
+    .search-bar input:valid + .search-btn:hover,
+    .search-bar input:valid:not(:focus) + .search-btn:focus {
+      background: #0c48db;
+    }
+    .search-bar input:focus + .search-btn:active,
+    .search-bar input:valid + .search-btn:active {
+      transform: translateY(1px);
+    }
+    
+    @media screen and (prefers-color-scheme: dark) {
+      body, input {
+        color: #f1f1f1;
+      }
+      .search-bar input {
+        box-shadow: 0 0 0 0.4em #0e0d0d inset;
+      }
+      .search-bar input:focus,
+      .search-bar input:valid {
+        background: #3d3d3d;
+        box-shadow: 0 0 0 0.1em #3d3d3d inset;
+      }
+      .search-btn {
+        background: #000000;
+      }
+    }
+  </style>
+  <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+  <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+  <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+  <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#563d7c">
+
+  <link rel="stylesheet" href="{% static "css/open-iconic-bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/animate.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/aos.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/ionicons.min.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
+  <link rel="stylesheet" href="{% static "css/jquery.timepicker.css" %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static "css/flaticon.css" %}">
+  <link rel="stylesheet" href="{% static "css/icomoon.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+  <link href="{% static "csssearch/main.css" %}" rel="stylesheet" />
+  <style>
+    .hes {
+      margin-top: 50px;
+      margin-left: 563px;
+    }
+
+    #tt {
+      text-align: center;
+    }
+
+    #temp {
+      margin-top: 15px;
+    }
+
+    #butto {
+      margin-left: -16px;
+    }
+    .s130{
+        min-height: 8vh;
+    }
+    .s130 form{
+      padding-top: 8vh;
+    }
+    /*.carousel-item active{
+      height: 523px;
+    }
+    .carousel-item{
+      height: 523px;
+    }*/
+    .ft{
+      padding: 0em 0;
+      padding-bottom: 8em 0;;
+    }
+    .carousel-item{
+      min-height: 237px;
+    }
+    .carousel-item active{
+      min-height: 237px;
+    }
+    #exampleModalLabel{
+      text-align: center;
+    }
+    #fl{
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    #imgcaorusel{
+      height: 400px;
+      object-fit: cover;
+    }
+    #exampleModalLabel{
+      text-align: center;
+    }
+    #idi{
+      object-fit: cover;
+      max-height: 50px;
+    }
+    .modal-title{
+      text-align: center;
+    }
+    .ftco-navbar-light.scrolled .navbar-brand {
+      font-family: serif;
+      font-weight: 500;
+    }
+    .navbar-brand {
+      font-weight: 500;
+      font-family: serif;
+    }
+    </style>
+</head>
+<body id="bod">
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img id="idi" src="{% static "images/book.png" %}" alt="">Your<br><small>Educator</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/course" class="nav-link">Courses</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item cta" id="tt"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
+          {% else %}
+          <li class="nav-item cta" data-toggle="modal" data-target="#exampleModal" id="tt"><a class="nav-link"><span>Signup</span></a></li>&nbsp;
+          <li class="nav-item cta" data-toggle="modal" data-target="#exampleModal2" id="tt"><a class="nav-link"><span>Login</span></a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid" id="fl">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="10">
+          <img src="{% static "images/onlinepics5.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="10">
+          <img src="{% static "images/new_online_course.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="10">
+          <img src="{% static "images/onlinepics4.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+    <div class="container">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/signup" method="post">
+          {% csrf_token %}
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" id="email" aria-describedby="emailHelp" placeholder="name@example.com" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Username" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label> 
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                  </div>
+                  <!-- <div class="form-row">
+                    <div class="col">
+                      <input type="text" class="form-control" name="fname" id="fname" placeholder="First name" required>
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name" required>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/login" method="post">{% csrf_token %}
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Username" required>
+                    <small id="status" class="form-text text-muted"></small>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label> 
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>  
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container">
+      <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <div class="modal-body">
+                <p>{{message}}</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="s130">
+      <form action="/search" method="GET">
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </div>
+            <input id="search" name="search" type="text" placeholder="Search courses ?" required/>
+          </div>
+          <div class="input-field second-wrap">
+            <button class="btn-search" type="submit">SEARCH</button>
+          </div>
+        </div>
+        <span class="info">ex. Science, History, Computer Science</span>
+      </form>
+    </div>
+  <section class="ftco-section" id="ft">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+          <div class="media block-6 services p-3 py-4 d-block text-center">
+            <div class="icon d-flex justify-content-center align-items-center mb-3"><span class="flaticon-exam"></span>
+            </div>
+            <div class="media-body px-3">
+              <h3 class="heading">Admission</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+          <div class="media block-6 services p-3 py-4 d-block text-center">
+            <div class="icon d-flex justify-content-center align-items-center mb-3"><span
+                class="flaticon-blackboard"></span></div>
+            <div class="media-body px-3">
+              <h3 class="heading">Notice Board</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+          <div class="media block-6 services p-3 py-4 d-block text-center">
+            <div class="icon d-flex justify-content-center align-items-center mb-3"><span class="flaticon-books"></span>
+            </div>
+            <div class="media-body px-3">
+              <h3 class="heading">Our Library</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="ftco-section-3 img" style="background-image: url({% static "images/bg_3.jpg" %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row d-md-flex justify-content-center">
+        <div class="col-md-9 about-video text-center">
+          <a id="video">
+            <h2 class="ftco-animate">Your Educator is among the Leading Universities Around the World</h2>
+          </a>
+          <div class="video d-flex justify-content-center">
+            <a href="{% static "video/school_v.mp4" %}"
+              class="button popup-vimeo d-flex justify-content-center align-items-center"><span
+                class="ion-ios-play"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="ftco-counter bg-light" id="section-counter">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="1200300">0</strong>
+                  <span>Satisfied Students</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="7896">0</strong>
+                  <span>Courses Completed</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="400">0</strong>
+                  <span>Experts Advisors</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="200">0</strong>
+                  <span>Schools</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section testimony-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-7 heading-section ftco-animate text-center">
+          <h2 class="mb-4">What Our Teachers Say</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ftco-animate">
+          <div class="carousel-testimony owl-carousel">
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/person_1.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and
+                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                    the Semantics, a large language ocean.</p>
+                  <p class="name">Paul Robinson</p>
+                  <span class="position">IIT Alumnus</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/person_2.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and
+                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                    the Semantics, a large language ocean.</p>
+                  <p class="name">Russel</p>
+                  <span class="position">John Hopkins Alumnus</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/person_3.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and
+                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                    the Semantics, a large language ocean.</p>
+                  <p class="name">Macbeth</p>
+                  <span class="position">Harvard Alumnus</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/person_4.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and
+                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+                    the Semantics, a large language ocean.</p>
+                  <p class="name">Dennis Green</p>
+                  <span class="position">Oxford Alumnus</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section testimony-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-7 heading-section ftco-animate text-center">
+          <h2 class="mb-4">What Our Student Says</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ftco-animate">
+          <div class="carousel-testimony owl-carousel">
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/student4.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">It’s like you sit in a classroom with a research paper and the person who wrote the paper is the professor in front of you. That kind of experience you don’t get at many universities.</p>
+                  <p class="name">Aron</p>
+                  <span class="position">CSE Student</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/student3.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                  <p class="name">Jackson</p>
+                  <span class="position">Math Student</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/student2.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                  <p class="name">Adam</p>
+                  <span class="position">Science Students</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap text-center">
+                <div class="user-img mb-5" style="background-image: url({% static "images/student1.jpg" %})">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                  <p class="name">Alan</p>
+                  <span class="position">English Student</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="ftco-freeTrial">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-flex align-items-center">
+            <div class="free-trial ftco-animate">
+              <h3>Try our free trial course</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life
+              </p>
+            </div>
+            <div class="btn-join ftco-animate">
+              <p><a href="/course" class="btn btn-primary py-3 px-4">Join now!</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-7 heading-section ftco-animate text-center">
+          <h2 class="mb-4">Our Courses</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 d-flex ftco-animate">
+          <div class="course align-self-stretch">
+            <a href="#" class="img" style="background-image: url({% static "images/course-1.jpg" %})"></a>
+            <div class="text p-4">
+              <p class="category"><span>English</span></p>
+              <h3 class="mb-3"><a href="#">English for Tommorow</a></h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life
+                One day however a small line of blind text by the name</p>
+              <p><a href="#" class="btn btn-primary">Enroll now!</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex ftco-animate">
+          <div class="course align-self-stretch">
+            <a href="#" class="img" style="background-image: url({% static "images/course-2.jpg" %})"></a>
+            <div class="text p-4">
+              <p class="category"><span>Science</span></p>
+              <h3 class="mb-3"><a href="#">Computer Engineering</a></h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life
+                One day however a small line of blind text by the name</p>
+              <p><a href="#" class="btn btn-primary">Enroll now!</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex ftco-animate">
+          <div class="course align-self-stretch">
+            <a href="#" class="img" style="background-image: url({% static "images/course-3.jpg" %})"></a>
+            <div class="text p-4">
+              <p class="category"><span>Business</span></p>
+              <h3 class="mb-3"><a href="#">Business Studies</a></h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life
+                One day however a small line of blind text by the name</p>
+              <p><a href="#" class="btn btn-primary">Enroll now!</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-10 ftco-animate">
+          <p><strong>When she reached</strong> the first hills of the Italic Mountains, she had a last view back on the
+            skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road,
+            the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+          <p><span>Just Browsing?</span><a href="/course"> View All Courses</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Subscribe to our Motivational Quotes</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts. Separated they live in</p>
+            <div class="row d-flex justify-content-center mt-5">
+              <div class="col-md-8">
+                <div class="subscribe-form">
+                  <form action="/subscription" method="POST">{% csrf_token %}
+                    <div class="form-group d-flex">
+                      <input type="email" name="email" id="email" class="form-control" placeholder="Enter email address"
+                      required>
+                      <input type="submit" value="Subscribe" class="submit px-3">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ftco-footer ftco-bg-dark ftco-section img"
+    style="background-image: url({% static "images/bg_2.jpg" %}); background-attachment:fixed;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <h2><a class="navbar-brand" href="/"><img id="idi" src="{% static "images/book.png" %}" alt="">Your<br><small>Educator</small></a></h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts.</p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"><a href="https://twitter.com" target="_blank"><span
+                    class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="https://facebook.com" target="_blank"><span
+                    class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="https://instagram.com" target="_blank"><span
+                    class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Recent Blog</h2>
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url({% static "images/image_1.jpg" %});"></a>
+              <div class="text">
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> July 12, 2021</a></div>
+                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url({% static "images/image_2.jpg" %});"></a>
+              <div class="text">
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> July 12, 2021</a></div>
+                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <a href="/contact">
+              <h2 class="ftco-heading-2">Have a Question?</h2>
+            </a>
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon icon-map-marker"></span><span class="text">India, West Bengal, kolkata.</span>
+                </li>
+                <li><a><span class="icon icon-phone"></span><span class="text">+91 9433274990</span></a></li>
+                <li><a><span class="icon icon-envelope"></span><span class="text">himaloymondal100@gmail.com</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>-->
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" /></svg></div>
+
+
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/jquery-migrate-3.0.1.min.js" %}"></script>
+  <script src="{% static "js/popper.min.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/jquery.easing.1.3.js" %}"></script>
+  <script src="{% static "js/jquery.waypoints.min.js" %}"></script>
+  <script src="{% static "js/jquery.stellar.min.js" %}"></script>
+  <script src="{% static "js/owl.carousel.min.js" %}"></script>
+  <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+  <script src="{% static "js/aos.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
+  <script src="{% static "js/jquery.timepicker.min.js" %}"></script>
+  <script src="{% static "js/scrollax.min.js" %}"></script>
+  <script type="application/javascript">
+    $(document).ready(function(){
+        $('#messageModal').modal({show:true});
+    });
+  </script>
+  <!-- <script>
+    $('#username').keyup(function(){
+      var username = $('#username').val();
+      if (username != ''){
+
+      }
+      if(username != '' &&  ){
+        $('#status').html('')
+      }
+    });
+  </script> -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static "js/google-map.js" %}"></script>
+  <script src="{% static "js/main.js" %}"></script>
+  <script src="{% static "jssearch/extention/choices.js" %}"></script>
+</body>
+
+</html>

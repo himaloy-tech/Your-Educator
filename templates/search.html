@@ -1,0 +1,683 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Your Educator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="{% static "images/book.png" %}">
+  <style>
+    body,
+    button,
+    input {
+      font: 1em Hind, sans-serif;
+      line-height: 1.5em;
+    }
+
+    body,
+    input {
+      color: #171717;
+    }
+
+    .search-bar {
+      display: flex;
+    }
+
+    body {
+      height: 100vh;
+    }
+
+    .search-bar input,
+    .search-btn,
+    .search-btn:before,
+    .search-btn:after {
+      transition: all 0.25s ease-out;
+    }
+
+    .search-bar input,
+    .search-btn {
+      width: 3em;
+      height: 3em;
+    }
+
+    .search-bar input:invalid:not(:focus),
+    .search-btn {
+      cursor: pointer;
+    }
+
+    .search-bar,
+    .search-bar input:focus,
+    .search-bar input:valid {
+      width: 100%;
+    }
+
+    .search-bar input:focus,
+    .search-bar input:not(:focus)+.search-btn:focus {
+      outline: transparent;
+    }
+
+    .search-bar {
+      margin: auto;
+      padding: 1.5em;
+      justify-content: center;
+      max-width: 30em;
+    }
+
+    .search-bar input {
+      background: transparent;
+      border-radius: 1.5em;
+      box-shadow: 0 0 0 0.4em #171717 inset;
+      padding: 0.75em;
+      transform: translate(0.5em, 0.5em) scale(0.5);
+      transform-origin: 100% 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .search-bar input::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+
+    .search-bar input:focus,
+    .search-bar input:valid {
+      background: #fff;
+      border-radius: 0.375em 0 0 0.375em;
+      box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+      transform: scale(1);
+    }
+
+    .search-btn {
+      background: #171717;
+      border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+      padding: 0.75em;
+      position: relative;
+      transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125);
+      transform-origin: 0 50%;
+    }
+
+    .search-btn:before,
+    .search-btn:after {
+      content: "";
+      display: block;
+      opacity: 0;
+      position: absolute;
+    }
+
+    .search-btn:before {
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+      top: 0.75em;
+      left: 0.75em;
+      width: 1.2em;
+      height: 1.2em;
+    }
+
+    .search-btn:after {
+      background: #f1f1f1;
+      border-radius: 0 0.25em 0.25em 0;
+      top: 51%;
+      left: 51%;
+      width: 0.75em;
+      height: 0.25em;
+      transform: translate(0.2em, 0) rotate(45deg);
+      transform-origin: 0 50%;
+    }
+
+    .search-btn span {
+      display: inline-block;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+    }
+
+    /* Active state */
+    .search-bar input:focus+.search-btn,
+    .search-bar input:valid+.search-btn {
+      background: #2762f3;
+      border-radius: 0 0.375em 0.375em 0;
+      transform: scale(1);
+    }
+
+    .search-bar input:focus+.search-btn:before,
+    .search-bar input:focus+.search-btn:after,
+    .search-bar input:valid+.search-btn:before,
+    .search-bar input:valid+.search-btn:after {
+      opacity: 1;
+    }
+
+    .search-bar input:focus+.search-btn:hover,
+    .search-bar input:valid+.search-btn:hover,
+    .search-bar input:valid:not(:focus)+.search-btn:focus {
+      background: #0c48db;
+    }
+
+    .search-bar input:focus+.search-btn:active,
+    .search-bar input:valid+.search-btn:active {
+      transform: translateY(1px);
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
+
+      body,
+      input {
+        color: #f1f1f1;
+      }
+
+      .search-bar input {
+        box-shadow: 0 0 0 0.4em #0e0d0d inset;
+      }
+
+      .search-bar input:focus,
+      .search-bar input:valid {
+        background: #3d3d3d;
+        box-shadow: 0 0 0 0.1em #3d3d3d inset;
+      }
+
+      .search-btn {
+        background: #000000;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static "css/open-iconic-bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/animate.css" %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/aos.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/ionicons.min.css" %}">
+
+  <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
+  <link rel="stylesheet" href="{% static "css/jquery.timepicker.css" %}">
+
+
+  <link rel="stylesheet" href="{% static "css/flaticon.css" %}">
+  <link rel="stylesheet" href="{% static "css/icomoon.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+  <link href="{% static "csssearch/main.css" %}" rel="stylesheet" />
+  <style>
+    .grid {
+      margin: 171px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      align-items: stretch;
+      margin-top: 56px;
+    }
+
+    .grid>article {
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .grid>article:hover {
+      transition: transform .1s ease-out;
+      transform: translateY(5px);
+    }
+
+    .grid>article img {
+      width: 100%;
+    }
+
+
+    .text {
+      padding: 0 20px 20px;
+    }
+
+    .text>button {
+      background: linear-gradient(to right, #f030a7, #f0308d, #f03061);
+      border-radius: 3px;
+      border: 0;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      text-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .grid {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0;
+      }
+
+      .grid>article {
+        text-align: center;
+      }
+    }
+
+    .hes {
+      text-align: center;
+    }
+
+    #tt {
+      text-align: center;
+    }
+
+    #temp {
+      margin-top: 15px;
+    }
+
+    #butto {
+      margin-left: -16px;
+    }
+
+    .s130 {
+      min-height: 40vh;
+    }
+
+    #idi {
+      object-fit: cover;
+      max-height: 50px;
+    }
+
+    #exampleModalLabel {
+      text-align: center;
+    }
+
+    #fl {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    #exampleModalLabel {
+      text-align: center;
+    }
+    .disabled {
+      pointer-events:none; 
+      opacity:0.6;  
+      background-color: rgb(184, 179, 179);   
+      border-radius: 50%;    
+    }
+    #imgcaorusel{
+      height: 400px;
+      object-fit: cover;
+    }
+    #exampleModalLabel{
+      text-align: center;
+    }
+    .s130 form{
+      padding-top: 3vh;
+    }
+    #bb{
+      font: Serif;
+      width: 132px;
+      border-radius: 25px;
+    }
+    #wow{
+      margin-bottom: 8px;
+    }
+    * {
+      border: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    #bb{
+      font: Serif;
+      width: 132px;
+      border-radius: 25px;
+    }
+    .ftco-navbar-light.scrolled .navbar-brand {
+      font-family: serif;
+      font-weight: 500;
+    }
+    .navbar-brand {
+      font-family: serif;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img id="idi" src="{% static "images/book.png" %}" alt="logo">Your<br><small>Educator</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/course" class="nav-link">Courses</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item cta" id="tt"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
+          {% else %}
+          <li class="nav-item cta" data-toggle="modal" data-target="#exampleModal" id="tt"><a
+              class="nav-link"><span>Signup</span></a></li>&nbsp;
+          <li class="nav-item cta" data-toggle="modal" data-target="#exampleModal2" id="tt"><a
+              class="nav-link"><span>Login</span></a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="container">
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+              <p>{{message}}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  <!-- END nav -->
+  <div class="container-fluid" id="fl">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="10000">
+          <img src="{% static "images/onlinepics5.jpg" %}" id="imgcaorusel" class="d-block w-100"
+            alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="10000">
+          <img src="{% static "images/new_online_course.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="10000">
+          <img src="{% static "images/onlinepics4.jpg" %}" id="imgcaorusel" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <div class="s130">
+    <form action="/search" method="GET">
+      <div class="inner-form">
+        <div class="input-field first-wrap">
+          <div class="svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+              </path>
+            </svg>
+          </div>
+          <input id="search" name="search" type="text" placeholder="Search courses ?" />
+        </div>
+        <div class="input-field second-wrap">
+          <button class="btn-search" type="submit">SEARCH</button>
+        </div>
+      </div>
+      <span class="info">ex. Science, History, Computer</span>
+    </form>
+  </div>
+  {% if cour|length < 1 %}
+  <h1 class="hes">No Search results found</h1>
+  {% endif %}
+  {% if cour|length >= 1 %}
+  <h1 class="hes">Search results</h1>
+  {% endif %}
+  <main class="grid" id="cou">
+    {% for pots in cour  %}
+    <article id="tet">
+        <img src="{{pots.img.url}}" id="courseimgs" alt="image">
+        <div class="text">
+          <div id="temp">
+            <h3 id="wow">{{pots.Name|truncatechars:24}}</h3>
+          </div>
+          <p style="color:#000000" id="test">{{pots.Desc|truncatechars:150}}</p>
+          <button type="button" id="bb" onclick="window.location.href='{{pots.link}}';" class="btn btn-primary">View Course</button>
+        </div>
+      </article>
+  {% endfor %}
+  </main>
+  <div class="container">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/signup" method="post">{% csrf_token %}
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" id="email"
+                  aria-describedby="emailHelp" placeholder="name@example.com" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Username</label>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Username"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password"
+                  required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone
+                  else.</small>
+                <!-- </div>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First name" required>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name" required>
+                  </div>
+                </div> -->
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/login" method="post">{% csrf_token %}
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Username</label>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Username"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password"
+                  required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone
+                  else.</small>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Subscribe to our Motivational Quotes</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts. Separated they live in</p>
+            <div class="row d-flex justify-content-center mt-5">
+              <div class="col-md-8">
+                <form action="/subscription" method="post" class="subscribe-form">{% csrf_token %}
+                  <div class="form-group d-flex">
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Enter email address"
+                      required>
+                    <input type="submit" value="Subscribe" class="submit px-3">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ftco-footer ftco-bg-dark ftco-section img"
+    style="background-image: url({% static "images/bg_2.jpg" %}); background-attachment:fixed;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <h2><a class="navbar-brand" href="/"><img id="idi" src="{% static "images/book.png" %}" alt="">Your<br><small>Educator</small></a></h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts.</p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"><a href="https://twitter.com" target="_blank"><span
+                    class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="https://facebook.com" target="_blank"><span
+                    class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="https://instagram.com" target="_blank"><span
+                    class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Recent Blog</h2>
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url({% static "images/image_1.jpg" %});"></a>
+              <div class="text">
+                <h3 class="heading"><a>Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a><span class="icon-calendar"></span> July 12, 2021</a></div>
+                  <div><a><span class="icon-person"></span> Admin</a></div>
+                  <div><a><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url({% static "images/image_2.jpg" %});"></a>
+              <div class="text">
+                <h3 class="heading"><a>Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a><span class="icon-calendar"></span> July 12, 2021</a></div>
+                  <div><a><span class="icon-person"></span> Admin</a></div>
+                  <div><a><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <a href="/contact" target="_blank">
+              <h2 class="ftco-heading-2">Have a Question?</h2>
+            </a>
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon icon-map-marker"></span><span class="text">India, West Bengal, Kolkata</span></li>
+                <li><a><span class="icon icon-phone"></span><span class="text">+91 9433274990</span></a></li>
+                <li><a><span class="icon icon-envelope"></span><span class="text">himaloymondal100@gmail.com</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" /></svg></div>
+
+
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/jquery-migrate-3.0.1.min.js" %}"></script>
+  <script src="{% static "js/popper.min.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/jquery.easing.1.3.js" %}"></script>
+  <script src="{% static "js/jquery.waypoints.min.js" %}"></script>
+  <script src="{% static "js/jquery.stellar.min.js" %}"></script>
+  <script src="{% static "js/owl.carousel.min.js" %}"></script>
+  <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+  <script src="{% static "js/aos.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
+  <script src="{% static "js/jquery.timepicker.min.js" %}"></script>
+  <script src="{% static "js/scrollax.min.js" %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+  </script>
+  <script type="application/javascript">
+    $(document).ready(function(){
+        $('#messageModal').modal({show:true});
+    });
+  </script>
+  <script src="{% static "js/google-map.js" %}"></script>
+  <script src="{% static "js/main.js" %}"></script>
+  <script src="{% static "jssearch/extention/choices.js" %}"></script>
+</body>
+
+</html>

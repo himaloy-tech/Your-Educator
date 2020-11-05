@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://127.0.0.1:8000/course -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Your Educator</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="http://127.0.0.1:8000/static/images/book.png">
+  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+  <style>
+  body, button, input {
+    font: 1em Hind, sans-serif;
+    line-height: 1.5em;
+  }
+  body, input {
+    color: #171717;
+  }
+  .search-bar {
+    display: flex;
+  }
+  body {
+    background: #000000;
+    height: 100vh;
+  }
+  .search-bar input,
+  .search-btn, 
+  .search-btn:before, 
+  .search-btn:after {
+    transition: all 0.25s ease-out;
+  }
+  .search-bar input,
+  .search-btn {
+    width: 3em;
+    height: 3em;
+  }
+  .search-bar input:invalid:not(:focus),
+  .search-btn {
+    cursor: pointer;
+  }
+  .search-bar,
+  .search-bar input:focus,
+  .search-bar input:valid  {
+    width: 100%;
+  }
+  .search-bar input:focus,
+  .search-bar input:not(:focus) + .search-btn:focus {
+    outline: transparent;
+  }
+  .search-bar {
+    margin: auto;
+    padding: 1.5em;
+    justify-content: center;
+    max-width: 30em;
+  }
+  .search-bar input {
+    background: transparent;
+    border-radius: 1.5em;
+    box-shadow: 0 0 0 0.4em #171717 inset;
+    padding: 0.75em;
+    transform: translate(0.5em,0.5em) scale(0.5);
+    transform-origin: 100% 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .search-bar input::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  .search-bar input:focus,
+  .search-bar input:valid {
+    background: #fff;
+    border-radius: 0.375em 0 0 0.375em;
+    box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+    transform: scale(1);
+  }
+  .search-btn {
+    background: #171717;
+    border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+    padding: 0.75em;
+    position: relative;
+    transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+    transform-origin: 0 50%;
+  }
+  .search-btn:before, 
+  .search-btn:after {
+    content: "";
+    display: block;
+    opacity: 0;
+    position: absolute;
+  }
+  .search-btn:before {
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+    top: 0.75em;
+    left: 0.75em;
+    width: 1.2em;
+    height: 1.2em;
+  }
+  .search-btn:after {
+    background: #f1f1f1;
+    border-radius: 0 0.25em 0.25em 0;
+    top: 51%;
+    left: 51%;
+    width: 0.75em;
+    height: 0.25em;
+    transform: translate(0.2em,0) rotate(45deg);
+    transform-origin: 0 50%;
+  }
+  .search-btn span {
+    display: inline-block;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+  }
+  
+  /* Active state */
+  .search-bar input:focus + .search-btn,
+  .search-bar input:valid + .search-btn {
+    background: #2762f3;
+    border-radius: 0 0.375em 0.375em 0;
+    transform: scale(1);
+  }
+  .search-bar input:focus + .search-btn:before, 
+  .search-bar input:focus + .search-btn:after,
+  .search-bar input:valid + .search-btn:before, 
+  .search-bar input:valid + .search-btn:after {
+    opacity: 1;
+  }
+  .search-bar input:focus + .search-btn:hover,
+  .search-bar input:valid + .search-btn:hover,
+  .search-bar input:valid:not(:focus) + .search-btn:focus {
+    background: #0c48db;
+  }
+  .search-bar input:focus + .search-btn:active,
+  .search-bar input:valid + .search-btn:active {
+    transform: translateY(1px);
+  }
+  
+  @media screen and (prefers-color-scheme: dark) {
+    body, input {
+      color: #f1f1f1;
+    }
+    .search-bar input {
+      box-shadow: 0 0 0 0.4em #0e0d0d inset;
+    }
+    .search-bar input:focus,
+    .search-bar input:valid {
+      background: #3d3d3d;
+      box-shadow: 0 0 0 0.1em #3d3d3d inset;
+    }
+    .search-btn {
+      background: #000000;
+    }
+  }
+  </style>
+  <link href="./Your Educator_files/css" rel="stylesheet">
+  <link rel="stylesheet" href="./Your Educator_files/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="./Your Educator_files/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="./Your Educator_files/animate.css">
+  <link rel="stylesheet" href="./Your Educator_files/all.css">
+  <link rel="stylesheet" href="./Your Educator_files/owl.carousel.min.css">
+  <link rel="stylesheet" href="./Your Educator_files/owl.theme.default.min.css">
+  <link rel="stylesheet" href="./Your Educator_files/magnific-popup.css">
+
+  <link rel="stylesheet" href="./Your Educator_files/aos.css">
+
+  <link rel="stylesheet" href="./Your Educator_files/ionicons.min.css">
+
+  <link rel="stylesheet" href="./Your Educator_files/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="./Your Educator_files/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="./Your Educator_files/flaticon.css">
+  <link rel="stylesheet" href="./Your Educator_files/icomoon.css">
+  <link rel="stylesheet" href="./Your Educator_files/style.css">
+  <link href="./Your Educator_files/css(1)" rel="stylesheet">
+  <link href="./Your Educator_files/main.css" rel="stylesheet">
+  <style>
+    .grid {
+      margin: 171px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      align-items: stretch;
+    }
+
+    .grid>article {
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .grid>article:hover {
+      transition: transform .1s ease-out;
+      transform: translateY(5px);
+    }
+
+    .grid>article img {
+      width: 100%;
+    }
+
+
+    .text {
+      padding: 0 20px 20px;
+    }
+
+    .text>button {
+      background: linear-gradient(to right, #f030a7, #f0308d, #f03061);
+      border-radius: 3px;
+      border: 0;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      font-weight: 600;
+      text-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .grid {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0;
+      }
+
+      .grid>article {
+        text-align: center;
+      }
+    }
+
+
+    .col-md-3 {
+      display: inline-block;
+      margin-left: 11px;
+    }
+
+    .carousel-indicators .active {
+      background-color: blue;
+    }
+
+    .col-md-3 img {
+      width: 100%;
+      height: auto;
+    }
+
+    body .carousel-indicator li {
+      background-color: blue;
+    }
+
+    body .carousel-indicators {
+      bottom: 0;
+    }
+
+    body .carousel-control-prev-icon,
+    body .carousel-control-next-icon {
+      background-color: blue;
+    }
+
+    body .no-padding {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    * {
+      box-sizing: content-box;
+    }
+
+    #course_button {
+      position: absolute;
+    }
+
+    #course_button {
+      width: max-content;
+      margin-left: 14px;
+      bottom: 14px;
+    }
+
+    .hes {
+      margin-top: 50px;
+      margin-left: 563px;
+    }
+
+    #tt {
+      text-align: center;
+    }
+
+    #temp {
+      margin-top: 15px;
+    }
+
+    #butto {
+      margin-left: -16px;
+    }
+    * {
+      border: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .s130{
+      min-height: 40vh;
+    }
+  </style>
+<style type="text/css">.scrollax-performance, .scrollax-performance *, .scrollax-performance *:before, .scrollax-performance *:after { pointer-events: none !important; -webkit-animation-play-state: paused !important; animation-play-state: paused !important; };</style><script type="text/javascript" charset="UTF-8" src="./Your Educator_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./Your Educator_files/util.js.download"></script></head>
+
+<body data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0" data-gr-c-s-loaded="true">
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="http://127.0.0.1:8000/"><i class="flaticon-university"></i>Your<br><small>Educator</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="http://127.0.0.1:8000/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="http://127.0.0.1:8000/about" class="nav-link">About</a></li>
+          <li class="nav-item active"><a href="http://127.0.0.1:8000/course" class="nav-link">Courses</a></li>
+          <li class="nav-item"><a href="http://127.0.0.1:8000/event" class="nav-link">Events</a></li>
+          <li class="nav-item"><a href="http://127.0.0.1:8000/contact" class="nav-link">Contact</a></li>
+          <li class="nav-item cta" id="tt"><a href="http://127.0.0.1:8000/course" class="nav-link"><span>Apply Now!</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- END nav -->
+  <div class="hero-wrap" style="background-image: url(&#39;/static/images/bg_1.jpg&#39;); background-attachment:fixed;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+        <div class="col-md-8 ftco-animate text-center fadeInUp ftco-animated">
+          <h1 class="mb-4">No Nation Can Prosper In Life Without Education</h1>
+            <a href="http://127.0.0.1:8000/course#cou" class="btn btn-primary px-4 py-3">View Courses</a><p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s130">
+    <form action="http://127.0.0.1:8000/search" method="GET">
+      <div class="inner-form">
+        <div class="input-field first-wrap">
+          <div class="svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+            </svg>
+          </div>
+          <input id="search" name="search" type="text" placeholder="Search courses ?">
+        </div>
+        <div class="input-field second-wrap">
+          <button class="btn-search" type="submit">SEARCH</button>
+        </div>
+      </div>
+      <span class="info">ex. Science, History, Computer</span>
+    </form>
+  </div>
+  <main class="grid" id="cou">
+       
+    <article>
+      <img src="./Your Educator_files/course-6_KbI1yq7.jpg" alt="Sample photo">
+      <div class="text">
+        <div id="temp">
+          <h3>Python</h3>
+        </div>
+        <p>Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design p…</p>
+      </div>
+    </article>
+       
+    <article>
+      <img src="./Your Educator_files/course-2_0vNkcKI.jpg" alt="Sample photo">
+      <div class="text">
+        <div id="temp">
+          <h3>Java</h3>
+        </div>
+        <p>Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design p…</p>
+      </div>
+    </article>
+       
+    <article>
+      <img src="./Your Educator_files/bg_1_1iLabcc.jpg" alt="Sample photo">
+      <div class="text">
+        <div id="temp">
+          <h3>Cyber Security</h3>
+        </div>
+        <p>Computer security, cybersecurity or information technology security is the protection of computer systems and networks from the theft of or damage to…</p>
+      </div>
+    </article>
+       
+    <article>
+      <img src="./Your Educator_files/image_4.jpg" alt="Sample photo">
+      <div class="text">
+        <div id="temp">
+          <h3>Cyber Threats</h3>
+        </div>
+        <p>Computer security, cybersecurity or information technology security is the protection of computer systems and networks from the theft of or damage to…</p>
+      </div>
+    </article>
+   
+  </main>
+  <!-- <section class="ftco-search-course">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="courseSearch-wrap d-md-flex flex-column-reverse">
+            <div class="full-wrap d-flex ftco-animate">
+              <div class="one-third order-last p-5">
+                <span>Know what you're after?</span>
+                <h3>I want to study</h3>
+                <form action="/search" method="GET" class="course-search-form">
+                  <div class="form-group d-flex">
+                    <input type="text" class="form-control" name="search" id="search"
+                      placeholder="Type a course you want to study" required>
+                    <input type="submit" value="Search" class="submit">
+                  </div>
+                </form>
+                <p>Just Browsing? <a href="/course"> See all courses</a></p>
+              </div>
+              <div class="one-forth order-first img" style="background-image: url(/static/images/image_1.jpg);">
+              </div>
+            </div>
+            <div class="full-wrap ftco-animate">
+              <div class="one-half">
+                <div class="featured-blog d-md-flex">
+                  <div class="image d-flex order-last">
+                    <a  class="img" style="background: url(/static/images/image_2.jpg);"></a>
+                  </div>
+                  <div class="text order-first">
+                    <span class="date">Aug 20, 2021</span>
+                    <h3><a >We Conduct Workshop 2021</a></h3>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- <div id="card-wrapper" class="container carousel-inner no-padding">
+    <div class="carousel-item active">
+      
+      <div class="col-xs-3 col-sm-3  my-3">;
+        <div class="card mr-10 " style="height:29rem; width: auto;">
+          <img src='/media/pics/course-6_KbI1yq7.jpg' class="card-img-top" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" id="course_name">Python</h5>
+            <p class="card-text" id="course_desc">Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python&#x27;s design p….</p>
+            <a  id="course_button" class="fixed-bottom btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xs-3 col-sm-3  my-3">;
+        <div class="card mr-10 " style="height:29rem; width: auto;">
+          <img src='/media/pics/course-2_0vNkcKI.jpg' class="card-img-top" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" id="course_name">Java</h5>
+            <p class="card-text" id="course_desc">Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python&#x27;s design p….</p>
+            <a  id="course_button" class="fixed-bottom btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xs-3 col-sm-3  my-3">;
+        <div class="card mr-10 " style="height:29rem; width: auto;">
+          <img src='/media/pics/bg_1_1iLabcc.jpg' class="card-img-top" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" id="course_name">Cyber Security</h5>
+            <p class="card-text" id="course_desc">Computer security, cybersecurity or information technology security is the protection of computer systems and networks from the theft of or damage to….</p>
+            <a  id="course_button" class="fixed-bottom btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xs-3 col-sm-3  my-3">;
+        <div class="card mr-10 " style="height:29rem; width: auto;">
+          <img src='/media/pics/image_4.jpg' class="card-img-top" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" id="course_name">Cyber Threats</h5>
+            <p class="card-text" id="course_desc">Computer security, cybersecurity or information technology security is the protection of computer systems and networks from the theft of or damage to….</p>
+            <a  id="course_button" class="fixed-bottom btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Subscribe to our Motivational Quotes</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts. Separated they live in</p>
+            <div class="row d-flex justify-content-center mt-5">
+              <div class="col-md-8">
+                <form action="http://127.0.0.1:8000/subscription" method="post" class="subscribe-form"><input type="hidden" name="csrfmiddlewaretoken" value="qDlg1UTcb1l5BurZaenrwp9jfGhVKhRNbUtJLOeXN81KAQZpTnk5kbnhHXZY4ULy">
+                  <div class="form-group d-flex">
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Enter email address" required="">
+                    <input type="submit" value="Subscribe" class="submit px-3">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ftco-footer ftco-bg-dark ftco-section img" style="background-image: url(/static/images/bg_2.jpg); background-attachment:fixed;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <h2><a class="navbar-brand" href="http://127.0.0.1:8000/"><i class="flaticon-university"></i>Himalayan
+                <br><small>University</small></a></h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts.</p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"><a href="https://twitter.com/" target="_blank"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="https://facebook.com/" target="_blank"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="https://instagram.com/" target="_blank"><span class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Recent Blog</h2>
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url(/static/images/image_1.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a>Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a><span class="icon-calendar"></span> July 12, 2021</a></div>
+                  <div><a><span class="icon-person"></span> Admin</a></div>
+                  <div><a><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url(/static/images/image_2.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a>Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a><span class="icon-calendar"></span> July 12, 2021</a></div>
+                  <div><a><span class="icon-person"></span> Admin</a></div>
+                  <div><a><span class="icon-chat"></span> 19</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <a href="http://127.0.0.1:8000/contact">
+              <h2 class="ftco-heading-2">Have a Question?</h2>
+            </a>
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon icon-map-marker"></span><span class="text">India, West Bengal, Kolkata</span></li>
+                <li><a><span class="icon icon-phone"></span><span class="text">+91 9433274990</span></a></li>
+                <li><a><span class="icon icon-envelope"></span><span class="text">himaloymondal100@gmail.com</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"></circle>
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"></circle></svg></div>
+
+
+  <script src="./Your Educator_files/jquery.min.js.download"></script>
+  <script src="./Your Educator_files/jquery-migrate-3.0.1.min.js.download"></script>
+  <script src="./Your Educator_files/popper.min.js.download"></script>
+  <script src="./Your Educator_files/bootstrap.min.js.download"></script>
+  <script src="./Your Educator_files/jquery.easing.1.3.js.download"></script>
+  <script src="./Your Educator_files/jquery.waypoints.min.js.download"></script>
+  <script src="./Your Educator_files/jquery.stellar.min.js.download"></script>
+  <script src="./Your Educator_files/owl.carousel.min.js.download"></script>
+  <script src="./Your Educator_files/jquery.magnific-popup.min.js.download"></script>
+  <script src="./Your Educator_files/aos.js.download"></script>
+  <script src="./Your Educator_files/jquery.animateNumber.min.js.download"></script>
+  <script src="./Your Educator_files/bootstrap-datepicker.js.download"></script>
+  <script src="./Your Educator_files/jquery.timepicker.min.js.download"></script>
+  <script src="./Your Educator_files/scrollax.min.js.download"></script>
+  <script src="./Your Educator_files/js">
+  </script>
+  <script src="./Your Educator_files/google-map.js.download"></script>
+  <script src="./Your Educator_files/main.js.download"></script>
+  <script src="./Your Educator_files/choices.js.download"></script>
+
+
+</body></html>
