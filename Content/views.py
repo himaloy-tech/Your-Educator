@@ -22,7 +22,7 @@ def about(request):
 
 def courses(request):
     post = AllCourse.objects.all()
-    paginator = Paginator(post, 6) # Show 6 objects per page.
+    paginator = Paginator(post, 30) # Show 30 objects per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     num = 0
@@ -81,8 +81,7 @@ li = list()
 lo = list()
 def subscription(request):
     if request.method == "POST":
-        email = str(request.POST.get('email'))
-        email = email[-1].replace(' ','')
+        email = request.POST.get('email')
         mail = Motivational_Quote(email=email)
         mail.save()
         messages.success(request, 'Thanks for subscribing')
@@ -98,7 +97,7 @@ def subscribe(request):
         subject = 'Verification Code'
         lo.append(email)
         recepient = lo
-        send_mail(subject, message, EMAIL_HOST_USER, recepient)
+        # send_mail(subject, message, EMAIL_HOST_USER, recepient)
         return redirect(request.META.get('HTTP_REFERER','/'))      
 
 def teacher_single(request):

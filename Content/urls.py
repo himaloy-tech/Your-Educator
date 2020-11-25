@@ -9,7 +9,6 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('teacher', views.teacher, name='teacher'),
     path('blog', views.blog, name='blog'),
-    # path('event', views.event, name='event'),
     path('subscription', views.subscription , name='subscription'),
     path('signup', views.signup , name='signup'),
     path('login', views.login , name='login'),
